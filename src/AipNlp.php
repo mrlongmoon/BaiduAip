@@ -15,10 +15,10 @@
 * the License.
 */
 
-namespace Linij\BaiduAip;
+namespace Mrlongmoon\BaiduAip;
 
 
-use Linij\BaiduAip\Lib\AipBase;
+use Mrlongmoon\BaiduAip\Lib\AipBase;
 
 class AipNlp extends AipBase
 {
