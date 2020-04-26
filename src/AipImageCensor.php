@@ -15,10 +15,9 @@
 * the License.
 */
 
-namespace Linij\BaiduAip;
+namespace Mrlongmoon\BaiduAip;
 
-
-use Linij\BaiduAip\Lib\AipBase;
+use Mrlongmoon\BaiduAip\Lib\AipBase;
 
 /**
  * 黄反识别
@@ -56,12 +55,17 @@ class AipImageCensor extends AipBase{
     /**
      * @var string
      */
-    private $imageCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/user_defined';
+    private $imageCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/v2/user_defined';
 
     /**
      * @var string
      */
     private $antiSpamUrl = 'https://aip.baidubce.com/rest/2.0/antispam/v2/spam';
+
+    /**
+     * @var string
+     */
+    private $textCensorUserDefinedUrl = 'https://aip.baidubce.com/rest/2.0/solution/v1/text_censor/v2/user_defined';
 
     /**
      * @param  string $image 图像读取
@@ -195,6 +199,19 @@ class AipImageCensor extends AipBase{
         }
 
         return $this->request($this->imageCensorUserDefinedUrl, $data);     
+    }
+
+    /**
+     * @param  string $text
+     * @return array
+     */
+    public function textCensorUserDefined($text){
+        
+        $data = array();
+
+        $data['text'] = $text;
+
+        return $this->request($this->textCensorUserDefinedUrl, $data);     
     }
 
     /**

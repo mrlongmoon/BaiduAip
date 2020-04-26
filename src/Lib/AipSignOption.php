@@ -1,6 +1,6 @@
 <?php
 
-namespace Linij\BaiduAip\Lib;
+namespace Mrlongmoon\BaiduAip\Lib;
 
 class AipSignOption
 {

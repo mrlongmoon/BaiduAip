@@ -1,12 +1,12 @@
 <?php
 
-namespace Linij\BaiduAip\Lib;
+namespace Mrlongmoon\BaiduAip\Lib;
 
 class AipSampleSigner
 {
 
     const BCE_AUTH_VERSION = "bce-auth-v1";
-    const BCE_PREFIX       = 'x-bce-';
+    const BCE_PREFIX = 'x-bce-';
 
     //不指定headersToSign情况下，默认签名http头，包括：
     //    1.host
@@ -15,9 +15,9 @@ class AipSampleSigner
     //    4.content-md5
     public static $defaultHeadersToSign;
 
-    public static function __init()
+    public static function  __init()
     {
-        self::$defaultHeadersToSign = array(
+        AipSampleSigner::$defaultHeadersToSign = array(
             "host",
             "content-length",
             "content-type",
@@ -30,9 +30,9 @@ class AipSampleSigner
      * @param  array $credentials
      * @param  string $httpMethod
      * @param  string $path
-     * @param  array $headers
+     * @param  array  $headers
      * @param  string $params
-     * @param  array $options
+     * @param  array  $options
      * @return string
      */
     public static function sign(
@@ -52,7 +52,7 @@ class AipSampleSigner
         }
 
         //解析ak sk
-        $accessKeyId     = $credentials['ak'];
+        $accessKeyId = $credentials['ak'];
         $secretAccessKey = $credentials['sk'];
 
         //设定时间戳，注意：如果自行指定时间戳需要为UTC时间
@@ -64,8 +64,8 @@ class AipSampleSigner
         }
 
         //生成authString
-        $authString = self::BCE_AUTH_VERSION.'/'.$accessKeyId.'/'
-            .$timestamp.'/'.$expirationInSeconds;
+        $authString = AipSampleSigner::BCE_AUTH_VERSION . '/' . $accessKeyId . '/'
+            . $timestamp . '/' . $expirationInSeconds;
 
         //使用sk和authString生成signKey
         $signingKey = hash_hmac('sha256', $authString, $secretAccessKey);
@@ -84,7 +84,7 @@ class AipSampleSigner
 
         //生成标准化header
         $canonicalHeader = AipHttpUtil::getCanonicalHeaders(
-            self::getHeadersToSign($headers, $headersToSign)
+            AipSampleSigner::getHeadersToSign($headers, $headersToSign)
         );
 
         //整理headersToSign，以';'号连接
@@ -97,7 +97,7 @@ class AipSampleSigner
 
         //组成标准请求串
         $canonicalRequest = "$httpMethod\n$canonicalURI\n"
-            ."$canonicalQueryString\n$canonicalHeader";
+            . "$canonicalQueryString\n$canonicalHeader";
 
         //使用signKey和标准请求串完成签名
         $signature = hash_hmac('sha256', $canonicalRequest, $signingKey);
@@ -147,12 +147,10 @@ class AipSampleSigner
     public static function isDefaultHeaderToSign($header)
     {
         $header = strtolower(trim($header));
-        if (in_array($header, self::$defaultHeadersToSign)) {
+        if (in_array($header, AipSampleSigner::$defaultHeadersToSign)) {
             return true;
         }
-
-        return substr_compare($header, self::BCE_PREFIX, 0, strlen(self::BCE_PREFIX)) == 0;
+        return substr_compare($header, AipSampleSigner::BCE_PREFIX, 0, strlen(AipSampleSigner::BCE_PREFIX)) == 0;
     }
 }
-
 AipSampleSigner::__init();

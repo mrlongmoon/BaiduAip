@@ -14,10 +14,10 @@
 * License for the specific language governing permissions and limitations under
 * the License.
 */
-namespace Linij\BaiduAip;
 
+namespace Mrlongmoon\BaiduAip;
 
-use Linij\BaiduAip\Lib\AipBase;
+use Mrlongmoon\BaiduAip\Lib\AipBase;
 
 class AipImageSearch extends AipBase {
 
@@ -226,6 +226,27 @@ class AipImageSearch extends AipBase {
     }
 
     /**
+     * 相同图检索—更新接口
+     *
+     * @param string $contSign - 图片签名
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   brief 更新的摘要信息，最长256B。样例：{"name":"周杰伦", "id":"666"}
+     *   tags 1 - 65535范围内的整数，tag间以逗号分隔，最多2个tag。样例："100,11" ；检索时可圈定分类维度进行检索
+     * @return array
+     */
+    public function sameHqUpdateContSign($contSign, $options=array()){
+
+        $data = array();
+        
+        $data['cont_sign'] = $contSign;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->sameHqUpdateUrl, $data);
+    }
+
+    /**
      * 相同图检索—删除接口
      *
      * @param string $image - 图像数据，base64编码，要求base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式
@@ -406,6 +427,27 @@ class AipImageSearch extends AipBase {
         $data = array();
         
         $data['url'] = $url;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->similarUpdateUrl, $data);
+    }
+
+    /**
+     * 相似图检索—更新接口
+     *
+     * @param string $contSign - 图片签名
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   brief 更新的摘要信息，最长256B。样例：{"name":"周杰伦", "id":"666"}
+     *   tags 1 - 65535范围内的整数，tag间以逗号分隔，最多2个tag。样例："100,11" ；检索时可圈定分类维度进行检索
+     * @return array
+     */
+    public function similarUpdateContSign($contSign, $options=array()){
+
+        $data = array();
+        
+        $data['cont_sign'] = $contSign;
 
         $data = array_merge($data, $options);
 
@@ -597,6 +639,28 @@ class AipImageSearch extends AipBase {
         $data = array();
         
         $data['url'] = $url;
+
+        $data = array_merge($data, $options);
+
+        return $this->request($this->productUpdateUrl, $data);
+    }
+
+    /**
+     * 商品检索—更新接口
+     *
+     * @param string $contSign - 图片签名
+     * @param array $options - 可选参数对象，key: value都为string类型
+     * @description options列表:
+     *   brief 更新的摘要信息，最长256B。样例：{"name":"周杰伦", "id":"666"}
+     *   class_id1 更新的商品分类1，支持1-60范围内的整数。
+     *   class_id2 更新的商品分类2，支持1-60范围内的整数。
+     * @return array
+     */
+    public function productUpdateContSign($contSign, $options=array()){
+
+        $data = array();
+        
+        $data['cont_sign'] = $contSign;
 
         $data = array_merge($data, $options);
 

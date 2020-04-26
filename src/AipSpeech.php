@@ -15,10 +15,10 @@
 * the License.
 */
 
-namespace Linij\BaiduAip;
+namespace Mrlongmoon\BaiduAip;
 
+use Mrlongmoon\BaiduAip\Lib\AipBase;
 
-use Linij\BaiduAip\Lib\AipBase;
 /**
  * 百度语音
  */

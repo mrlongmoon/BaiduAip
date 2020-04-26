@@ -1,7 +1,10 @@
 <?php
 
-namespace Linij\BaiduAip\Lib;
+namespace Mrlongmoon\BaiduAip\Lib;
 
+/**
+ * BCE Util
+ */
 class AipHttpUtil
 {
     // 根据RFC 3986，除了：
@@ -14,31 +17,31 @@ class AipHttpUtil
     //填充编码数组
     public static function __init()
     {
-        self::$PERCENT_ENCODED_STRINGS = array();
+        AipHttpUtil::$PERCENT_ENCODED_STRINGS = array();
         for ($i = 0; $i < 256; ++$i) {
-            self::$PERCENT_ENCODED_STRINGS[$i] = sprintf("%%%02X", $i);
+            AipHttpUtil::$PERCENT_ENCODED_STRINGS[$i] = sprintf("%%%02X", $i);
         }
 
         //a-z不编码
         foreach (range('a', 'z') as $ch) {
-            self::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
+            AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
         }
 
         //A-Z不编码
         foreach (range('A', 'Z') as $ch) {
-            self::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
+            AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
         }
 
         //0-9不编码
         foreach (range('0', '9') as $ch) {
-            self::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
+            AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord($ch)] = $ch;
         }
 
         //以下4个字符不编码
-        self::$PERCENT_ENCODED_STRINGS[ord('-')] = '-';
-        self::$PERCENT_ENCODED_STRINGS[ord('.')] = '.';
-        self::$PERCENT_ENCODED_STRINGS[ord('_')] = '_';
-        self::$PERCENT_ENCODED_STRINGS[ord('~')] = '~';
+        AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord('-')] = '-';
+        AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord('.')] = '.';
+        AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord('_')] = '_';
+        AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord('~')] = '~';
     }
 
     /**
@@ -48,7 +51,7 @@ class AipHttpUtil
      */
     public static function urlEncodeExceptSlash($path)
     {
-        return str_replace("%2F", "/", self::urlEncode($path));
+        return str_replace("%2F", "/", AipHttpUtil::urlEncode($path));
     }
 
     /**
@@ -60,7 +63,7 @@ class AipHttpUtil
     {
         $result = '';
         for ($i = 0; $i < strlen($value); ++$i) {
-            $result .= self::$PERCENT_ENCODED_STRINGS[ord($value[$i])];
+            $result .= AipHttpUtil::$PERCENT_ENCODED_STRINGS[ord($value[$i])];
         }
         return $result;
     }
@@ -90,11 +93,11 @@ class AipHttpUtil
             }
             if (isset($v)) {
                 //对于有值的，编码后放在=号两边
-                $parameterStrings[] = self::urlEncode($k)
-                    . '=' . self::urlEncode((string) $v);
+                $parameterStrings[] = AipHttpUtil::urlEncode($k)
+                    . '=' . AipHttpUtil::urlEncode((string) $v);
             } else {
                 //对于没有值的，只将key编码后放在=号的左边，右边留空
-                $parameterStrings[] = self::urlEncode($k) . '=';
+                $parameterStrings[] = AipHttpUtil::urlEncode($k) . '=';
             }
         }
         //按照字典序排序
@@ -117,9 +120,9 @@ class AipHttpUtil
         } else {
             //所有的uri必须以'/'开头
             if ($path[0] == '/') {
-                return self::urlEncodeExceptSlash($path);
+                return AipHttpUtil::urlEncodeExceptSlash($path);
             } else {
-                return '/' . self::urlEncodeExceptSlash($path);
+                return '/' . AipHttpUtil::urlEncodeExceptSlash($path);
             }
         }
     }
@@ -147,7 +150,7 @@ class AipHttpUtil
                 $v = '';
             }
             //trim后再encode，之后使用':'号连接起来
-            $headerStrings[] = self::urlEncode(strtolower(trim($k))) . ':' . self::urlEncode(trim($v));
+            $headerStrings[] = AipHttpUtil::urlEncode(strtolower(trim($k))) . ':' . AipHttpUtil::urlEncode(trim($v));
         }
         //字典序排序
         sort($headerStrings);
@@ -156,5 +159,4 @@ class AipHttpUtil
         return implode("\n", $headerStrings);
     }
 }
-
 AipHttpUtil::__init();

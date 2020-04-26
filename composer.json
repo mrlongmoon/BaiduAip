@@ -1,6 +1,6 @@
 {
     "name": "mrlongmoon/baiduaip",
-    "description": "baidu ocr aip",
+    "description": "baidu aip",
     "type": "library",
     "license": "Apache-2.0",
     "keywords": [
@@ -10,7 +10,7 @@
     ],
     "authors": [
         {
-            "name": "mrlongmoon",
+            "name": "Mr.LongMoon",
             "email": "mrlongmoon@163.com"
         }
     ],
@@ -21,5 +21,12 @@
         "psr-4": {
             "Mrlongmoon\\BaiduAip\\": "src/"
         }
-    }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

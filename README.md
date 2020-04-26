@@ -9,6 +9,9 @@ Forked from Linij/BaiduAip
 - Namespace
 - Package Management By Composer
 
+## Log
+- 2020.04.26 Updated Baidu Aip version 2_2_19
+
 ## Installation
 
 `composer require mrlongmoon/baiduaip`
