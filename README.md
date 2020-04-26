@@ -1,7 +1,7 @@
 # Baidu Aip 
 
-> Give the Aip namespace in PHP 7.0+ 
-> Forked from Linij/BaiduAip
+> Give the Aip namespace in PHP 7.0+  
+Forked from Linij/BaiduAip
 
 ## Features
 
