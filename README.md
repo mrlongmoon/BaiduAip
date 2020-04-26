@@ -1,4 +1,4 @@
-# Baidu Aip picture recognition
+# Baidu Aip , forked from Linij/BaiduAip
 
 > Give the Aip namespace in PHP 7.0+ 
 
