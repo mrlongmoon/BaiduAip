@@ -1,5 +1,5 @@
 {
-    "name": "linij/baiduaip",
+    "name": "mrlongmoon/baiduaip",
     "description": "baidu ocr aip",
     "type": "library",
     "license": "Apache-2.0",
@@ -10,8 +10,8 @@
     ],
     "authors": [
         {
-            "name": "linji",
-            "email": "237525603@qq.com"
+            "name": "mrlongmoon",
+            "email": "mrlongmoon@163.com"
         }
     ],
     "require": {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Linij\\BaiduAip\\": "src/"
+            "Mrlongmoon\\BaiduAip\\": "src/"
         }
     }
 }
