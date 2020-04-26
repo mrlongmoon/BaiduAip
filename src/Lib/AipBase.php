@@ -15,7 +15,7 @@
 * the License.
 */
 
-namespace Linij\BaiduAip\Lib;
+namespace Mrlongmoon\BaiduAip\Lib;
 
 /**
  * Aip Base 基类
